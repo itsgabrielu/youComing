@@ -1,0 +1,27 @@
+<%= form_with scope: :event, url: user_events_path(current_user.id), local: true do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :location %><br>
+    <%= form.text_field :location %>
+  </p>
+  <p>
+    <%= form.label :date_start %><br>
+    <%= form.datetime_field :date_start %>
+  </p>
+  <p>
+    <%= form.label :date_end %><br>
+    <%= form.datetime_field :date_end %>
+  </p>
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<%= params.inspect %> <br>
+<%= current_user.inspect %>

@@ -1,3 +1,13 @@
 <h1>uComing?</h1>
 <p>This is a mini project by Gabriel.</p>
-<%= link_to_if 'Log in' %>
+
+<%= link_to_if(current_user.nil?, "Login", user_session_path){}%>
+<%= link_to_if(user_signed_in?,"Logout", destroy_user_session_path, :method=>'delete'){}%>
+
+<%- if user_signed_in? %>
+  <%= link_to "My events", user_events_path(current_user.id) %>
+<% end -%>
+
+<%- if user_signed_in? %>
+  <%= link_to "Create event", new_user_event_path(current_user.id) %>
+<% end -%>
