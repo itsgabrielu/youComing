@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  guest_type: MyString
+  attendance: false
+
+two:
+  guest_type: MyString
+  attendance: false

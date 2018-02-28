@@ -1,17 +1,24 @@
 <h1> Event detail </h1>
 
 <p>Event:
-<%= @event.name %>
+  <%= @event.name %>
+</p>
+<p>Host:
+  <% @attendees.each do |a| %>
+    <%= a.user.name %>
+  <% end %>
 </p>
 <p>Location:
-<%= @event.location %>
+  <%= @event.location %>
 </p>
 <p>Start:
-<%= @event.date_start %>
+  <%= @event.date_start %>
 </p>
 <p>End:
-<%= @event.date_end %>
+  <%= @event.date_end %>
 </p>
 <p>Description:
-<%= @event.description %>
+  <%= simple_format(@event.description)%>
 </p>
+
+<%= link_to('Home', welcome_index_path)%>
