@@ -2,9 +2,20 @@
 
 <% @attending.each do |a| %>
   <%= link_to a.event.name, event_path(a.event)  %>
-  <%- if a.host_type -%>
-    Host
-  <%- end  -%>
+  <p>
+    <%- if a.host_type? -%>
+      You're hosting.
+    <%- else -%>
+      You're invited!
+        <%- if a.attendance==nil -%>
+          Are uComing?
+        <%- elsif a.attendance? -%>
+          You're joining.
+        <%- else -%>
+          You can't join.
+        <%- end -%>
+  </p>
+    <%- end  -%>
 <% end %>
 <br>
 

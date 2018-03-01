@@ -4,9 +4,11 @@
   <%= @event.name %>
 </p>
 <p>Host:
+  <ul>
   <% @attendees.each do |a| %>
-    <%= a.user.name %>
+    <li><%= a.user.name %></li>
   <% end %>
+  </ul>
 </p>
 <p>Location:
   <%= @event.location %>
@@ -21,4 +23,12 @@
   <%= simple_format(@event.description)%>
 </p>
 
+<%- if  user_signed_in? -%>
+  <p> You are signed in as <%= current_user.name %> </p>
+<%- else -%>
+  To view options: <%= link_to "Login", new_user_session_path %>
+<%- end -%> <br>
+<!-- Check if current user is signed in. else prompt signin/login >> redirect to same page
+      If user is signed in, check if their status. Are they a guest/host?
+      If they are a guest, check if they are invited, and then their attendance.-->
 <%= link_to('Home', welcome_index_path)%>

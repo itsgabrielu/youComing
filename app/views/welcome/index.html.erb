@@ -1,5 +1,19 @@
 <h1>uComing?</h1>
-<p>This is a mini project by Gabriel.</p>
+
+<h2>Host, Attend, Meet.</h2>
+
+<%- if user_signed_in? %>
+  <p>Welcome, <%= current_user.name %></p>
+<%- else -%>
+  <p> Welcome :),
+      meeting friends just got easier. To begin,
+      <%=link_to "log in", user_session_path%>
+      , or
+      <%=link_to "sign up", new_user_path%>
+      if you are new.
+  </p>
+
+<% end -%>
 
 <%= link_to_if(current_user.nil?, "Login", user_session_path){}%>
 <%= link_to_if(user_signed_in?,"Logout", destroy_user_session_path, :method=>'delete'){}%>
