@@ -22,6 +22,8 @@
 <p>Description:
   <%= simple_format(@event.description)%>
 </p>
+<%= text_field_tag 'url_link', @url, :readonly => true %>
+<button id='copy_url_btn'> <%= image_tag('copyurl.png', size: '15x15') %> </button>
 
 <%- if  user_signed_in? -%>
   <p> You are signed in as <%= current_user.name %> </p>
