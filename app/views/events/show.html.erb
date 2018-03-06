@@ -42,9 +42,24 @@
   <p> You are signed in as <%= current_user.name %> </p>
   <%- if !@attendees.exists?(user_id: current_user.id)-%>
     <p> You have not responded. </p>
+    <%= form_with scope: :attendee, url: attendee_path, local: true do |form| %>
+        <%= form.hidden_field :event_id, value: @event.id %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.hidden_field :host_type, value: false %>
+        <%= form.hidden_field :attendance, value: true %>
+      <p>
+        <%= form.submit "Attend" %>
+      </p>
+    <% end %>
   <%- else -%>
     <%- if @attendees.where(user_id: current_user.id)[0].attendance -%>
-      <p> You are going as a <%= @attendees.where(user_id: current_user.id)[0].host_type %>. </p>
+      <p> You are going as a
+      <%- if @attendees.where(user_id: current_user.id)[0].host_type -%>
+        host.
+      <%- else -%>
+        guest.
+      <%- end -%>
+      </p>
     <%- else -%>
       <p> You are not going. </p>
     <%- end -%>

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, :path_prefix => 'my'
-  resources :users 
+  resources :users
   resources :events
 
+  post 'attendee', to: 'attendees#create'
 
   get 'welcome/index'
 
