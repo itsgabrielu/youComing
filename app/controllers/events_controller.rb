@@ -8,7 +8,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @attendees = Attendee.where(event_id: @event, host_type: true).includes(:user)
+    @attendees = Attendee.where(event_id: @event).includes(:user)
+    @hosts = Attendee.where(event_id: @event, host_type: true).includes(:user)
+    @guests = Attendee.where(event_id: @event, host_type: false).includes(:user)
     @url = request.original_url
     p 'original url'
     p @url

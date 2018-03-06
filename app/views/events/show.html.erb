@@ -5,8 +5,21 @@
 </p>
 <p>Host:
   <ul>
-  <% @attendees.each do |a| %>
-    <li><%= a.user.name %></li>
+  <% @hosts.each do |h| %>
+    <li><%= h.user.name %></li>
+  <% end %>
+  </ul>
+</p>
+<p>Attendees:
+  <ul>
+  <% @guests.each do |a| %>
+    <li><%= a.user.name %>
+        <%- if a.attendance -%>
+        Yes
+        <%- else -%>
+        No
+        <%- end -%>
+    </li>
   <% end %>
   </ul>
 </p>
@@ -25,8 +38,17 @@
 <%= text_field_tag 'url_link', @url, :readonly => true %>
 <button id='copy_url_btn'> <%= image_tag('copyurl.png', size: '15x15') %> </button>
 
-<%- if  user_signed_in? -%>
+<%- if user_signed_in? -%>
   <p> You are signed in as <%= current_user.name %> </p>
+  <%- if !@attendees.exists?(user_id: current_user.id)-%>
+    <p> You have not responded. </p>
+  <%- else -%>
+    <%- if @attendees.where(user_id: current_user.id)[0].attendance -%>
+      <p> You are going as a <%= @attendees.where(user_id: current_user.id)[0].host_type %>. </p>
+    <%- else -%>
+      <p> You are not going. </p>
+    <%- end -%>
+  <%- end -%>
 <%- else -%>
   To view options: <%= link_to "Login", new_user_session_path %>
 <%- end -%> <br>
