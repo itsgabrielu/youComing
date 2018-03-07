@@ -36,10 +36,10 @@
   <%= @event.location %>
 </p>
 <p>Start:
-  <%= @event.date_start %>
+  <%= @event.date_start.strftime("%d %b %Y %I:%M%P %:z") %>
 </p>
 <p>End:
-  <%= @event.date_end %>
+  <%= @event.date_end.strftime("%d %b %Y %I:%M%P %:z") %>
 </p>
 <p>Description:
   <%= simple_format(@event.description)%>
