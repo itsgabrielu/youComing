@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :events
 
   post 'attendee', to: 'attendees#create'
+  put 'attendee', to: 'attendees#edit'
 
   get 'welcome/index'
 

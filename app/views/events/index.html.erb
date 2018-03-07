@@ -6,13 +6,13 @@
     <%- if a.host_type? -%>
       You're hosting.
     <%- else -%>
-      You're invited!
+      You're invited &
         <%- if a.attendance==nil -%>
-          Are uComing?
+          not yet responded.
         <%- elsif a.attendance? -%>
-          You're joining.
+          joining.
         <%- else -%>
-          You can't join.
+          not joining.
         <%- end -%>
   </p>
     <%- end  -%>
