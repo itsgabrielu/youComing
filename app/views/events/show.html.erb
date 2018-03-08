@@ -4,6 +4,16 @@
   <%= @event.name %>
 </p>
 <p>Host:
+  <%- if @hosts.empty? and !@guestnothost.nil? -%>
+    <%= form_with scope: :attendee, url: attendee_path, method: :put, local: true do |form| %>
+        <%= form.hidden_field :event_id, value: @event.id %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.hidden_field :host_type, value: true %>
+      <p>
+        <%= form.submit "Be host" %>
+      </p>
+    <% end %>
+  <%- end -%>
   <ul>
   <% @hosts.each do |h| %>
     <li><%= h.user.name %></li>

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :events
+  has_many :attendees, dependent: :destroy
   validates :name, presence: true, length: { minimum: 3 }
 
 end

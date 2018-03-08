@@ -3,7 +3,7 @@
 <h2>Host, Attend, Meet.</h2>
 
 <%- if user_signed_in? %>
-  <p>Welcome, <%= current_user.name %></p>
+  <p>Welcome, <%= link_to current_user.name, edit_user_registration_path %></p>
 <%- else -%>
   <p> Welcome :),
       meeting friends just got easier. To begin,
