@@ -1,0 +1,8 @@
+<%= form_with scope: :attendee, url: attendee_path, method: :put, local: true do |form| %>
+    <%= form.hidden_field :event_id, value: @event.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :attendance, value: true %>
+  <p>
+    <%= form.submit "Change" %>
+  </p>
+<% end %>

@@ -8,8 +8,10 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @guestnothost = Attendee.find_by(user_id: current_user.id, event_id: @event.id, host_type: false)
-    @participants = Attendee.where(event_id: @event).includes(:user)
+    if user_signed_in?
+      @guestnothost = Attendee.find_by(user_id: current_user.id, event_id: @event.id, host_type: false)
+    end
+    @participants = Attendee.where(event_id: @event).where().not(attendance: nil).includes(:user)
     @going = Attendee.where(event_id: @event, attendance: true).includes(:user)
     @notgoing = Attendee.where(event_id: @event, attendance: false).includes(:user)
     @hosts = Attendee.where(event_id: @event, host_type: true).includes(:user)

@@ -1,8 +1,14 @@
 class AttendeesController < ApplicationController
   def create
-    @event_id = params[:attendee][:event_id]
+    @attendee = Attendee.find_by(event_id: params[:attendee][:event_id], user_id: params[:attendee][:user_id])
+    if @attendee.present?
+      @attendee.attendance = params[:attendee][:attendance]
+      @attendee.save
+    else
+      Attendee.create(attendee_params)
+    end
 
-    Attendee.create(attendee_params)
+    @event_id = params[:attendee][:event_id]
     redirect_to event_path(@event_id)
   end
 
