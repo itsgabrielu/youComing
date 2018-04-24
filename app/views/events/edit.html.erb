@@ -1,0 +1,7 @@
+<%= form_with scope: :event, url: event_path, method: :put, local: true do |form| %>
+    <%= form.text_field :name, value: @event.name %>
+    <%= form.text_field :location, value: @event.location %>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

@@ -2,6 +2,9 @@
 
 <p>Event:
   <%= @event.name %>
+  <%- if user_signed_in? && current_user.id==@hosts[0].user_id -%>
+    <%= link_to 'Edit', edit_event_path  %>
+  <%- end -%>
 </p>
 <p>Host:
   <%- if @hosts.empty? and !@guestnothost.nil? -%>
@@ -83,7 +86,7 @@
     <%- end -%>
   <%- end -%>
 <%- else -%>
-  To view options: <%= link_to "Login", new_user_session_path %>
+  To interact with this list, <%= link_to "login", new_user_session_path %>
 <%- end -%> <br>
 <!-- Check if current user is signed in. else prompt signin/login >> redirect to same page
       If user is signed in, check if their status. Are they a guest/host?
