@@ -30,7 +30,10 @@ class EventsController < ApplicationController
   end
 
   def update
-    render plain: params.inspect
+    # render plain: params.inspect
+    @event = Event.find(params[:id])
+    @event.update(event_params)
+    redirect_to event_path(@event)
   end
   private
     def event_params
